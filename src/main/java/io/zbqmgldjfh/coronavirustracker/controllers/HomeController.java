@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.io.IOException;
 import java.util.List;
@@ -20,7 +21,7 @@ public class HomeController {
         this.coronaVirusDataService = service;
     }
 
-    @GetMapping("/")
+    @GetMapping("/home")
     public String home(Model model){
         List<LocationStats> allStats = coronaVirusDataService.getAllStats();
         int totalCases = allStats.stream().mapToInt(stat -> stat.getLatestTotalCases()).sum();
@@ -30,5 +31,17 @@ public class HomeController {
         model.addAttribute("totalCases", totalCases);
         model.addAttribute("totalNewCases", totalNewCases);
         return "home";
+    }
+
+    @GetMapping("/board")
+    public String getBoard(Model model){
+        List<LocationStats> allStats = coronaVirusDataService.getAllStats();
+        int totalCases = allStats.stream().mapToInt(stat -> stat.getLatestTotalCases()).sum();
+        int totalNewCases = allStats.stream().mapToInt(stat -> stat.getDiffFromPrevDay()).sum();
+
+        model.addAttribute("locationStats", allStats);
+        model.addAttribute("totalCases", totalCases);
+        model.addAttribute("totalNewCases", totalNewCases);
+        return "board";
     }
 }

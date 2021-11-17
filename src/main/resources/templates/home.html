@@ -16,8 +16,8 @@
                 <h1>CoronaVirus Tracker</h1>
             </a>
             <div>
-                <button class="btn btn-primary btn-lg" type="button">회원가입</button>
-                <button class="btn btn-primary btn-lg" type="button">로그인</button>
+                <button class="btn btn-success btn-lg" type="button">회원가입</button>
+                <button th:onclick="|location.href='@{system/login}'|" class="btn btn-primary btn-lg" type="button">로그인</button>
             </div>
         </div>
     </header>
@@ -32,26 +32,8 @@
                 <span>전 세계에서 오늘 발생한 총 확진자 수</span>
                 <span th:text="${totalNewCases} + ' 명'"></span>
             </p></br>
-            <button class="btn btn-primary btn-lg" type="button">국가별 확진자 확인</button>
-        </div>
-    </div>
-    <div class="p-5 mb-4 bg-dark rounded-3">
-        <div class="container-fluid py-5">
-            <table class="table text-white">
-                <tr>
-                    <th class="fs-2">국가</th>
-                    <th class="fs-2">도시</th>
-                    <th class="fs-2">총 현황</th>
-
-                    <th class="fs-2">당일 확진자 수</th>
-                </tr>
-                <tr th:each="locationStat : ${locationStats}">
-                    <td th:text="${locationStat.getCountry()}">국가</td>
-                    <td th:text="${locationStat.getState()}">도시</td>
-                    <td th:text="${locationStat.getLatestTotalCases()}">현황</td>
-                    <td th:text="${locationStat.getDiffFromPrevDay()}">당일 확진자 수</td>
-                </tr>
-            </table>
+            <button th:onclick="|location.href='@{/board}'|"
+                    class="btn btn-danger btn-lg" type="button">국가별 확진자 확인</button>
         </div>
     </div>
 
