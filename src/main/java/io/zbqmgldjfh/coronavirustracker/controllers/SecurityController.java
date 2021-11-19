@@ -13,7 +13,8 @@ public class SecurityController {
     public void accessDenied() {}
 
     @GetMapping("/system/logout")
-    public void logout() {}
+    public void logout() {
+    }
 
     @GetMapping("/admin/adminPage")
     public void admin() {}

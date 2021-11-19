@@ -1,5 +1,6 @@
 package io.zbqmgldjfh.coronavirustracker.config;
 
+import io.zbqmgldjfh.coronavirustracker.security.MyLoginSuccessHandler;
 import io.zbqmgldjfh.coronavirustracker.security.SecurityUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -20,15 +21,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity security) throws Exception {
         security.userDetailsService(userDetailsService);
 
-        security.authorizeRequests().antMatchers("/home", "/system/**").permitAll();
+        security.authorizeRequests().antMatchers("/", "/system/**").permitAll();
         security.authorizeRequests().antMatchers("/board/**").authenticated();
         security.authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN");
 
         security.csrf().disable();
 
-        security.formLogin().loginPage("/system/login").defaultSuccessUrl("/board", true);
+        //security.formLogin().loginPage("/system/login").defaultSuccessUrl("/", true).usernameParameter("username");
+        security.formLogin().defaultSuccessUrl("/", true);
         security.exceptionHandling().accessDeniedPage("/system/accessDenied");
-        security.logout().logoutUrl("/system/logout").invalidateHttpSession(true).logoutUrl("/");
+        security.logout().invalidateHttpSession(true).logoutSuccessUrl("/");
 
     }
 }

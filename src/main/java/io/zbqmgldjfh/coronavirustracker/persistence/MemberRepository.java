@@ -1,7 +1,10 @@
 package io.zbqmgldjfh.coronavirustracker.persistence;
 
 import io.zbqmgldjfh.coronavirustracker.models.Member;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface MemberRepository extends CrudRepository<Member, Long> {
+import java.util.Optional;
+
+public interface MemberRepository extends JpaRepository<Member, Long> {
+    Optional<Member> findByEmail(String email);
 }

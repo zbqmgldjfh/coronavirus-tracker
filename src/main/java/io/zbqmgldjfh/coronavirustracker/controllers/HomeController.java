@@ -21,7 +21,7 @@ public class HomeController {
         this.coronaVirusDataService = service;
     }
 
-    @GetMapping("/home")
+    @GetMapping("/")
     public String home(Model model){
         List<LocationStats> allStats = coronaVirusDataService.getAllStats();
         int totalCases = allStats.stream().mapToInt(stat -> stat.getLatestTotalCases()).sum();
@@ -43,5 +43,9 @@ public class HomeController {
         model.addAttribute("totalCases", totalCases);
         model.addAttribute("totalNewCases", totalNewCases);
         return "board";
+    }
+    @GetMapping("/index")
+    public String getIndex(){
+        return "index";
     }
 }
