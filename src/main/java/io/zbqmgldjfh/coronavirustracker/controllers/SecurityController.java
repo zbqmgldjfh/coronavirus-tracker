@@ -2,20 +2,22 @@ package io.zbqmgldjfh.coronavirustracker.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/system")
 public class SecurityController {
 
-    @GetMapping("/system/login")
+    @GetMapping("/login")
     public void login() {}
 
-    @GetMapping("/system/accessDenied")
+    @GetMapping("/accessDenied")
     public void accessDenied() {}
 
-    @GetMapping("/system/logout")
+    @GetMapping("/logout")
     public void logout() {
     }
 
-    @GetMapping("/admin/adminPage")
+    @GetMapping("/adminPage")
     public void admin() {}
 }

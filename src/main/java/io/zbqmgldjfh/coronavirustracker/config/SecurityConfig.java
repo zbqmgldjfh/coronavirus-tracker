@@ -21,7 +21,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity security) throws Exception {
         security.userDetailsService(userDetailsService);
 
-        security.authorizeRequests().antMatchers("/", "/system/**").permitAll();
+        security.authorizeRequests().antMatchers("/", "/system/**", "/members/**").permitAll();
         security.authorizeRequests().antMatchers("/board/**").authenticated();
         security.authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN");
 
